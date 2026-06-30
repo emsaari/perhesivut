@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topin sukukirja - Kirjaudu sisään</title>
+    <style>
+        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f4f4f9; }
+        .login-container { text-align: center; padding: 30px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        input { padding: 10px; font-size: 16px; margin: 10px 0; width: 200px; border: 1px solid #ccc; border-radius: 4px; }
+        button { padding: 10px 20px; font-size: 16px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        .error { color: red; margin-top: 10px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Topin sukukirja</h2>
+    <p>Syötä salasana avataksesi sukukirjan:</p>
+    <input type="password" id="passwordInput" placeholder="Salasana" onkeypress="checkEnter(event)">
+    <br>
+    <button onclick="verifyPassword()">Kirjaudu</button>
+    <div id="errorMessage" class="error"></div>
+</div>
+
+<script>
+    // Määritä haluamasi salasana tähän (huom: isot ja pienet kirjaimet merkitsevät)
+    const OIKEA_SALASANA = "meidänsuku2026"; 
+
+    function verifyPassword() {
+        const syotettySalasana = document.getElementById("passwordInput").value;
+        const virheViesti = document.getElementById("errorMessage");
+
+        if (syotettySalasana === OIKEA_SALASANA) {
+            // Ohjataan käyttäjä automaattisesti sukukirja-sivulle
+            window.location.href = "sukukirja.html";
+        } else {
+            virheViesti.innerText = "Väärä salasana. Yritä uudelleen.";
+        }
+    }
+
+    // Sallii kirjautumisen painamalla Enter-näppäintä
+    function checkEnter(event) {
+        if (event.key === "Enter") {
+            verifyPassword();
+        }
+    }
+</script>
+
+</body>
+</html>
